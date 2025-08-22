@@ -1,10 +1,10 @@
-# shell.nix for AOD
+# shell.nix for JetStream
 {
   pkgs ? import <nixpkgs> { },
 }:
 
 pkgs.mkShell {
-  name = "AOD";
+  name = "JetStream";
   buildInputs = with pkgs; [
     cargo
     rustc
