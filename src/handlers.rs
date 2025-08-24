@@ -3,3 +3,4 @@ pub mod message_handler;
 pub mod action_handler;
 pub mod keyboard_handler;
 pub mod presentation_handler;
+pub mod media_handler;

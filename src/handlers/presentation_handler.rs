@@ -1,7 +1,7 @@
 use crate::handlers::keyboard_handler;
 use enigo::Key;
 
-pub async fn handle_presentation(msg: &str) {
+pub async fn presentation_handler(msg: &str) {
     match msg.trim() {
         "left" => keyboard_handler::click(Key::LeftArrow).await,
         "right" => keyboard_handler::click(Key::RightArrow).await,

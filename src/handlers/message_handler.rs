@@ -1,4 +1,7 @@
-use crate::{handlers::{action_handler, command_handler, presentation_handler}, websocket::{SharedOutbox, SharedOutboxExt}};
+use crate::{
+    handlers::{action_handler, command_handler, media_handler, presentation_handler},
+    websocket::{SharedOutbox, SharedOutboxExt},
+};
 
 pub async fn message_handler(msg: &str, shared_outbox: &SharedOutbox) {
     let (dispacher, arguments) = msg.split_once('#').unwrap_or_else(|| ("INVALID", ""));
@@ -13,7 +16,10 @@ pub async fn message_handler(msg: &str, shared_outbox: &SharedOutbox) {
         "LOCK" => action_handler::lock_device(),
 
         // Presentation
-        "PRSTN" => presentation_handler::handle_presentation(arguments).await,
+        "PRSTN" => presentation_handler::presentation_handler(arguments).await,
+
+        // Media
+        "MEDIA" => media_handler::media_handler(arguments).await,
 
         // Invalid
         _ => shared_outbox.quick_send("INVALID COMMAND").await,

@@ -47,6 +47,8 @@ async fn ws_connection_handler(ws_stream: WebSocketStream<TcpStream>) {
                 }
                 Message::Close(close) => {
                     println!("Close: {:?}", close);
+                    // Server has to respond with a close frame to close the connection gracefully
+                    shared_outbox.lock().await.close().await.unwrap();
                     break;
                 }
                 _ => {}

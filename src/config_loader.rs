@@ -2,7 +2,7 @@ use std::fs;
 
 use serde::Deserialize;
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct ServerConfig {
     pub server_name: String,
 
@@ -19,7 +19,7 @@ pub trait ServerConfigExt {
 impl ServerConfigExt for ServerConfig {
     fn default() -> Self {
         ServerConfig {
-            server_name: "Jetstream Server".to_string(),
+            server_name: "Mathew's Jetstream Server".to_string(),
             addr: "0.0.0.0".to_string(),
             port: 8000,
             password: "".to_string(),
